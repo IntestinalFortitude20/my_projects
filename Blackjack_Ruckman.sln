@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Blackjack_Ruckman_Final", "Blackjack_Ruckman_Final.pyproj", "{4A3BB3CE-9C3D-47FE-963F-1D4ADEC7220F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A3BB3CE-9C3D-47FE-963F-1D4ADEC7220F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3BB3CE-9C3D-47FE-963F-1D4ADEC7220F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11D33304-BED3-487B-A5B0-B98EF08D7C84}
+	EndGlobalSection
+EndGlobal
