@@ -1,0 +1,73 @@
+'Patrick Ruckman
+'CIS-105-003
+'10-20-2020
+'Color array 
+
+numrows = 20
+numcols = 20
+squaresize = 15
+delay = 10
+Width = numcols * squaresize + 20
+Height = numrows * squaresize + 20
+
+GraphicsWindow.Width = Width
+GraphicsWindow.Height = Height
+GraphicsWindow.Title = "Color Squares"
+
+
+x = 10
+y = 10
+
+'2D arrays always use a nested loop to populate each element (through  to indeces)
+For r = 1 To numrows ' this loop will run 30 times
+  For c = 1 To numcols ' this loop will run 900 times (30 * 30)
+    GraphicsWindow.BrushColor = GraphicsWindow.GetRandomColor()
+    boxes[r][c] = Shapes.AddRectangle(squaresize, squaresize)
+    Shapes.Move(boxes[r][c], x, y)
+    Program.Delay(delay)
+    x = x + squaresize
+  EndFor
+  y = y + squaresize
+  x = 10
+EndFor
+
+
+'deconstruct - have the squares fly away to random locations off the window
+Sub randomFly
+
+  randomX = Math.GetRandomNumber(Width + 300) 'I chose this variable to have the rng get a number that could be greater than the boundaries of the window
+  If Math.Remainder(randomX, 2) = 0 Then ' just introducing some variability
+    randomX = randomX * (-1)
+  EndIf
+
+  randomY = Math.GetRandomNumber(Height + 300)
+  If Math.Remainder(randomY, 2) <> 0 Then ' again, to make things a bit more random
+    randomY = randomY * (-1)
+  EndIf
+  
+  If randomX < 0 Then
+    randomX = randomX - squaresize ' For squares that don't get moved off the screen completely, such as a square at (-1, 10) that is 15 pixels large will still be seen on the screen
+  ElseIf randomX > Width Then
+    randomX = randomX + squaresize 'this part is redundant, as the square would be drawn off screen anyway in the positive direction
+  EndIf
+  
+  If randomY < 0 Then ' Same with the randomY being completely off the screen
+    randomY = randomY - squaresize 'nudge a little extra
+  ElseIf randomY > Height Then
+    randomY = randomY + squaresize 'Also, a little redundant, doesn't hurt, though
+  EndIf
+  
+Endsub 'randomFly
+
+
+For r = numrows To 1 Step -1 'deconstructing in reverse order because of z-order; the squares can't be seen well decontructing from 1 to numcols/numrows
+  For c = numcols To 1 Step -1
+    randomFly()
+      While randomX > 0 And randomX < Width And randomY > 0 And randomY < Height 'These are coordinates which fall within the window dimensions
+        randomFly() 'perform the subroutine again, as long as these four conditions are simultaneously true
+      EndWhile
+    Shapes.Animate(boxes[r][c], randomX, randomY, 1000)
+    Program.Delay(100)
+  EndFor
+EndFor
+
